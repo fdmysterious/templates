@@ -1,0 +1,44 @@
+%%%%%%%%%%%%%%%%
+% backpage.tex %
+%%%%%%%%%%%%%%%%
+% Author : Florian Dupeyron (My?terious)
+% Description : Back page info
+
+\clearpage
+\null
+
+\pagestyle{empty}
+\setlength{\parindent}{0mm}
+\hypersetup{
+    hidelinks
+}
+
+%\tikz[remember picture,overlay] \node[opacity=0.3,inner sep=0pt] at (current page.center){\includegraphics[width=\paperwidth,height=\paperheight]{example-image}};
+
+\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{img/backpage.pdf}}
+
+\begin{textblock*}{80mm}[1,0](\paperwidth-20mm, 20mm)
+    \mbox{\bfseries ATEMIS GENITEC - 3GF Industrie S.A.S.}
+
+    \begin{tabular}{l l }
+        \fa{} & M.GUEMAT Mohand \\
+        \fa{} & 12 Résidence de la Vallée des Anges \\
+               & 93390 Clichy-sous-bois \\
+        \fa{} & 09 52 37 22 83 \\
+        \fa{} & 09 57 15 75 64 \\
+        \fa{} & \url{http://www.atemisgenitec.com}
+    \end{tabular}
+\end{textblock*}
+
+\begin{textblock*}{80mm}[0,1](20mm, \paperheight-20mm)
+    \color{white}\mbox{\bfseries Mugcat Services}
+
+    \begin{tabular}{l l }
+        \fa{} & M.DUPEYRON Florian \\
+        \fa{} & 4 lot le perdinat --- 17770 Burie \\
+        \fa{} & 06 65 66 76 16 \\
+        \fa{} & \url{http://mugcat.fr}
+    \end{tabular}
+\end{textblock*}
+
+\clearpage

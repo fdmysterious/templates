@@ -1,0 +1,1 @@
+/home/mysterious/.config/templates/poly/mst-poly.cls
