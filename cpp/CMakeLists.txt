@@ -30,13 +30,25 @@ include_directories(
 #########################################
 # Main target
 #########################################
+add_library(
+    main_lib
+    ${SRCS}
+)
+
+#target_link_libraries( main_lib, )
+
+#########################################
+# App target
+#########################################
 add_executable(
     app
-
-    ${SRCS}
     src/main.cpp
 )
 
+target_link_libraries(
+    app
+    main_lib
+)
 
 #########################################
 # Test target
@@ -44,9 +56,12 @@ add_executable(
 add_executable(
     unit_tests
 
-    ${SRCS}
     ${SRCS_TESTS}
     tests/main.cpp
+)
+target_link_libraries(
+    unit_tests
+    main_lib
 )
 
 ## Adding BUILD_TESTS Definition
