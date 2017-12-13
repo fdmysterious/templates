@@ -12,6 +12,12 @@ set( APPNAME test_app )
 # Compiler configuration
 #########################################
 include( "cmake/toolchain.cmake" )
+include( "cmake/tools.cmake"     )
+
+#########################################
+# Libraries
+#########################################
+add_subdirectory( lib )
 
 #########################################
 # Main target

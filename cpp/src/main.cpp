@@ -11,7 +11,9 @@
 #include <exception>
 #include <syslog.h>
 
-#include "log.hpp"
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/ansicolor_sink.h>
+#include <log.hpp>
 
 namespace app
 {
@@ -20,27 +22,29 @@ namespace app
     void exit(); // To clean stuff up
 }
 
+// TODO // Improve this function to be what it needs to be : an interrupt routine
 void sig_handler( int sig )
 {
     switch( sig )
     {
         case SIGSEGV:
-        log_main.critic("SIGSEGV") << "Segmentation fault !";
+        plog("main")-> critical("Caught segmentation signal");
         break;
 
         case SIGINT:
-        log_main.notice("SIGINT") << "Interruption signal !";
+        plog("main")->warn("Caught interruption");
         break;
 
         case SIGTERM:
-        log_main.warn("SIGTERM") << "Caught termination request";
+        plog("main")->warn("Caught interruption");
         break;
 
         default:
-        log_main.warn("main.cpp:32") << "Caught signal !";
+        plog("main")->warn("Caught signal. Exiting.");
     }
 
     app::exit();
+    plog.close();
     std::exit( EXIT_FAILURE );
 }
 
@@ -53,12 +57,8 @@ int main(int argc, const char *argv[])
 {
     std::uint8_t status = EXIT_SUCCESS; // Everything's fine for now
 
-    //openlog( "{{ appName }}", LOG_CONS | LOG_PERROR , LOG_USER );
+    plog.init();
 
-    //#ifdef BUILD_DEBUG
-    //setlogmask( LOG_UPTO(LOG_DEBUG) );
-    //#endif
-    // Program cycle //
     try
     {
         // Signal handlers install //
@@ -77,11 +77,12 @@ int main(int argc, const char *argv[])
     catch( const std::exception & e )
     {
         //syslog( LOG_CRIT, "Caught exception : %s", e.what() );
-        log_main.critic( "main.cpp:67" ) << "Caught exception : " << e.what();
+        plog("main")->critical ( "Caught exception : {}", e.what() );
         status = EXIT_FAILURE; // :'(
     }
     app::exit();
     // End of section //
     
+    plog.close();
     return status;
 }

@@ -10,23 +10,29 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+
+#include <spdlog/spdlog.h>
+#include <log.hpp>
 // End of section //
+
+namespace spd = spdlog;
+using namespace std::chrono_literals;
 
 namespace app
 {
     void init( const int & argc, const char * argv[] )
     {
-        std::cout << "Init some stuff here" << std::endl;
+        plog("main") -> info("init stuff here");
     }
 
     void run()
     {
-        std::cout << "Hello world !" << std::endl;
-        for(;;) std::this_thread::sleep_for( std::chrono::seconds(1) ); //INFINIIIIITE
+        plog("main") -> info("Running");
+        for(;;) std::this_thread::sleep_for( 1s );
     }
 
     void exit()
     {
-        std::cout << "And now time for exit !" << std::endl;
+        plog("main")-> info("Now leaving !");
     }
 }
