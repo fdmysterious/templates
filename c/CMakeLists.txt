@@ -17,7 +17,7 @@ include( "cmake/tools.cmake"     )
 #########################################
 # Libraries
 #########################################
-add_subdirectory( lib )
+#add_subdirectory( lib )
 
 #########################################
 # Main target
