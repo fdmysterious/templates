@@ -11,6 +11,8 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#include <sys/log.h>
+
 //////////////////////////////////////////
 // App functions prototypes
 //////////////////////////////////////////
@@ -27,24 +29,26 @@ void sig_handler( int sig )
     // TODO // Logging with proper routines
     switch( sig ) {
         case SIGSEGV:
-        fprintf( stderr, "Segmentation fault :(\n" );
+        syslog( LOG_ERR, "Caught segfault signal" );
         break;
 
         case SIGINT:
-        fprintf( stderr, "Caught interruption\n" );
+        syslog( LOG_WARNING, "Caught interruption signal" );
         ret = EXIT_SUCCESS;
         break;
 
         case SIGTERM:
+        syslog( LOG_ERR, "Caught termination signal" );
         fprintf( stderr, "Caught termination signal\n" );
         break;
 
         default: // TODO // Add SIGALRM handling
-        fprintf( stderr, "Caught uknown signal, exiting" );
+        syslog( LOG_WARNING, "Caught uknown signal, exiting" );
         break;
     }
 
     app_exit();
+    log_close();
     exit( ret );
 }
 
@@ -56,7 +60,8 @@ void setup_signal( const int s )
 int main( const int argc, const char * argv[] )
 {
     uint8_t status = EXIT_SUCCESS;
-    // TODO // Log init
+
+    log_open( "app_log" );
     
     // Signal setup //
     setup_signal( SIGABRT );
@@ -69,7 +74,7 @@ int main( const int argc, const char * argv[] )
 
     // App init and run //
     if( !app_init( argc, argv ) ) {
-        fprintf(stderr, "Error when app init\n");
+        syslog( LOG_ERR, "Error at app init" );
         exit( EXIT_FAILURE );
     }
     status = app_run();
@@ -77,7 +82,7 @@ int main( const int argc, const char * argv[] )
 
     // App closing //
     app_exit();
-    // TODO // Log close
+    log_close();
     // End of section //
 
     return status;

@@ -1,5 +1,8 @@
+
 add_library(
     main_lib
+
+    sys/log.c
     app.c
 )
 
@@ -7,6 +10,8 @@ add_executable(
     app
     main.c
 )
+
+target_include_directories( app PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
 
 set_target_properties(
     app

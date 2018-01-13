@@ -4,9 +4,11 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#include <sys/log.h>
+
 bool app_init( const int argc, const char * argv[] )
 {
-    fprintf( stderr, "Hello world !" );
+    syslog( LOG_NOTICE, "Hello world !" );
     return true;
 }
 
@@ -18,5 +20,5 @@ uint8_t app_run()
 
 void app_exit()
 {
-    fprintf( stderr, "Bye !\n" );
+    syslog( LOG_NOTICE, "Bye !" );
 }
