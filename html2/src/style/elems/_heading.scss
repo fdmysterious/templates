@@ -1,0 +1,22 @@
+// Imports //
+@import "../vars";
+// End of section //
+
+h1,h2,h3,h4,h5,h6
+{
+    color          : $color-heading;
+    font-family    : $font-heading ;
+    font-weight    : 400;
+    margin-bottom  : .5em;
+    margin-top:0;
+}
+
+h1 { font-size : $font-h1-size; }
+h2 { font-size : $font-h2-size; }
+h3 { font-size : $font-h3-size; }
+
+
+@media( max-width : $size-tablet - 1 ) {
+    h1 { font-size : $font-h1-size-mobile; }
+    h2 { font-size : $font-h2-size-mobile; }
+}

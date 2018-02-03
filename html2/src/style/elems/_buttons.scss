@@ -1,0 +1,35 @@
+a.button {
+    @include no-outline();
+
+    text-decoration : none;
+    display : inline-block;
+    color : $color-magenta;
+    padding : .5em;
+    border : 1px solid $color-magenta;
+
+    border-radius : 10px;
+
+    transition : color 100ms ease, background 100ms ease;
+
+    &:hover {
+        color : $color-cream;
+        background : $color-magenta !important;
+    }
+
+    &:active {
+        border : 1px solid $color-magenta;
+        transition : color 100ms ease;
+        background : lighten( $color-magenta, 10 ) !important;
+    }
+
+    &.primary {
+        color      : $color-cream;
+        background : lighten( $color-purple, 20 );
+        border     : 1px solid lighten( $color-purple, 20 );
+        box-shadow : 0px 0px 5px rgba( 0, 0, 0, 0.1 );
+    }
+
+    &.no-border {
+        border : initial !important;
+    }
+}

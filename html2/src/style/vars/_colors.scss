@@ -1,0 +1,20 @@
+//////////////////////////////////////////
+// Scheme couleurs
+//////////////////////////////////////////
+$color-white   : #FFFBF7;
+$color-black   : #140E0C;
+$color-cream   : #FFE7CE;
+$color-orange  : #F18F01;
+$color-purple  : #3B1F2B;
+$color-magenta : #AB224D;
+
+//////////////////////////////////////////
+// Main colors
+//////////////////////////////////////////
+$color-background-main    : $color-cream;
+$color-background-content : $color-cream;
+
+$color-heading            : $color-magenta;
+$color-main               : $color-purple;
+$color-link               : #ba5e01;
+$color-link-hover         : lighten( $color-link, 20 );

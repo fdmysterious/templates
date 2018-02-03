@@ -1,0 +1,35 @@
+html,body {
+    font-family : $font-main; color: $color-main;
+}
+p {
+    line-height   : $text-lineheight     ;
+    margin-bottom : $text-parskip        ;
+    margin-top    : 0;
+    text-align    : $text-main-alignment ;
+}
+
+a {
+    transition : color 200ms ease;
+    color      : $color-link;
+
+    &:hover {
+        color : $color-link-hover;
+    }
+}
+
+dl.inline {
+    position : relative;
+
+    dd {
+        position : relative;
+        top      : -1.15em;
+        left     : 1.8em;
+        width    : 70%;
+    }
+}
+
+dl {
+    dt {
+        font-weight : bold;
+    }
+}

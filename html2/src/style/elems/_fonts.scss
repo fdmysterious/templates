@@ -1,0 +1,35 @@
+@include create-font(
+    "Fira Sans",
+    "Fira Sans-Regular",
+    "fira/FiraSans-Regular"
+);
+
+@include create-font(
+    "Fira Sans",
+    "Fira Sans-Italic",
+    "fira/FiraSans-Italic",
+    normal,
+    italic
+);
+
+@include create-font(
+    "Fira Sans",
+    "Fira Sans-Bold",
+    "fira/FiraSans-Bold",
+    700
+);
+
+//////////////////////
+@include create-font(
+    "Quicksand",
+    "Quicksand-Regular",
+    "quicksand/Quicksand-Regular"
+);
+
+//@include create-font(
+//    "FiraSans",
+//    "Fira Sans-Light",
+//    "fira/FiraSans-Light",
+//    300
+//);
+

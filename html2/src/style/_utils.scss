@@ -1,0 +1,90 @@
+// Some utilities
+@mixin no-outline()
+{
+    &:focus,&:active
+    {
+        outline: 0;
+        border : none;
+        -moz-outline-border: none;
+    }
+}
+
+@mixin make-container(
+    $size-fixed,
+    $size-rel  ,
+    $margin-left,
+    $trigger-size : ( $size-fixed + 2 * $margin-left )
+)
+{
+    // Position //
+    position : relative;
+    // End of section //
+
+    // Box //
+    margin     : auto;
+    width      : $size-rel ;
+    box-sizing : border-box;
+    // End of section //
+
+    // Media //
+    @media(
+        min-width : ( $size-fixed ) / ( $size-rel / 100% )
+    )
+    {
+        width       : $size-fixed;
+
+        @media(
+            min-width : $trigger-size / ( $size-rel / 100% )
+        )
+        {
+            margin-left : $margin-left;
+        }
+    }
+    // End of section //
+}
+
+.hide-scrollbar {
+    overflow : hidden;
+}
+
+@mixin flexible-width(
+    $size-fixed,
+    $size-rel
+)
+{
+    position : relative;
+    width : $size-rel;
+    box-sizing : border-box;
+
+    @media(
+        min-width : $size-fixed / ( $size-rel / 100% ) 
+    )
+    {
+            width : $size-fixed;
+    }
+}
+@mixin button-clean()
+{
+    // CSS Reset //
+    background : none;
+    border     : 0   ;
+    padding    : 0   ;
+    margin     : 0   ;
+    @include no-outline();
+    // End of section //
+}
+
+// TODO // Move the base path into some variable
+@mixin create-font( $family, $sysName, $basename, $fontWeight : normal, $fontStyle : normal ) {
+    @font-face {
+       font-family : $family;
+       src : local($sysName),
+            url( "#{$font-base-path}/#{$basename}.woff") format("woff"),
+            url( "#{$font-base-path}/#{$basename}.eot" ) format("embedded-opentype"),
+            url( "#{$font-base-path}/#{$basename}.otf" ) format("opentype")
+       ;
+
+       font-weight : $fontWeight;
+       font-style  : $fontStyle;
+    }
+}
